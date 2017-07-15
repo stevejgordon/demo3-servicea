@@ -1,0 +1,31 @@
+{
+  "family": "dockerdemo-servicea",
+  "containerDefinitions": [
+    {
+      "name": "dockerdemo-servicea",
+      "essential": true,
+      "image": "865288682694.dkr.ecr.eu-west-2.amazonaws.com/dockerdemo-servicea:latest",
+      "entryPoint": [
+        "dotnet",
+        "DockerDotNetDevsDemo3.ServiceA.dll"
+      ],
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 0,
+          "containerPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "workingDirectory": "/app",
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "dockerdemo",
+          "awslogs-region": "eu-west-2",
+          "awslogs-stream-prefix": "dockerdemo-servicea"
+        }
+      }
+    }
+  ]
+}

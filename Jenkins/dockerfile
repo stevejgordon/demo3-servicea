@@ -1,0 +1,22 @@
+FROM jenkins
+
+USER root
+RUN apt-get -qq update \
+   && apt-get -qq -y install \
+   curl && apt-get install sudo -y
+
+RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+   
+RUN curl -sSL https://get.docker.com/ | sh
+
+RUN usermod -a -G staff jenkins
+
+# Setting up AWS CLI
+RUN apt-get update
+RUN apt-get install -y python
+
+RUN curl -O https://bootstrap.pypa.io/get-pip.py
+RUN python get-pip.py
+RUN pip install awscli
+
+USER jenkins

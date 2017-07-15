@@ -1,0 +1,70 @@
+{
+    "Resources": {
+        
+        "ALB": {            
+            "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+            "Properties": {
+                "Name": "dockerdemo",
+                "Scheme": "internet-facing",
+                "SecurityGroups": [
+                "sg-f8b7f491"
+                ],
+                "Subnets": [
+                "subnet-9d10a2e6",
+                "subnet-392ae174"
+                ]
+            }
+        },
+        
+        "TargetGroup": {
+            "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+            "Properties": {
+                "Name": "servicea",
+                "HealthCheckIntervalSeconds": 120,
+                "HealthCheckPath": "/api/content/title",
+                "Port": 80,
+                "Protocol": "HTTP",
+                "VpcId": "vpc-5722ae3e"
+            }            
+        },    
+        
+        "WebListener": {
+            "Type": "AWS::ElasticLoadBalancingV2::Listener",
+            "Properties": {
+                "DefaultActions": [{
+                    "TargetGroupArn": {
+                        "Ref": "TargetGroup"
+                    },
+                    "Type": "forward"
+                }],
+                "LoadBalancerArn": {
+                    "Ref": "ALB"
+                },
+                "Port": 80,
+                "Protocol": "HTTP"
+            }
+        },
+
+         "ECSService": {
+            "Type": "AWS::ECS::Service",
+            "DependsOn": [
+                "ALB",
+                "TargetGroup",
+                "WebListener"
+            ],
+            "Properties": {
+                "Cluster": "arn:aws:ecs:eu-west-2:865288682694:cluster/dockerdemo",
+                "DesiredCount": "1",
+                "TaskDefinition": "arn:aws:ecs:eu-west-2:865288682694:task-definition/dockerdemo-servicea:7",
+                "LoadBalancers": [{
+                    "TargetGroupArn": {
+                        "Ref": "TargetGroup"
+                    },
+                    "ContainerPort": "80",
+                    "ContainerName": "dockerdemo-servicea"
+                }],
+                "Role": "arn:aws:iam::865288682694:role/ecsServiceRole"
+            }
+        }
+    }
+}
