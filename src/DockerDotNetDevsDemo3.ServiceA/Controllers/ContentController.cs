@@ -8,7 +8,7 @@ namespace DockerDotNetDevsDemo3.ServiceA.Controllers
         [HttpGet, Route("title")]
         public string GetTitle()
         {
-            return "Hello World!";
+            return "Hello Progressive .NET!";
         }     
     }
 }
