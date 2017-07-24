@@ -18,4 +18,4 @@ docker rmi dockerdemo-servicea
 docker rmi 865288682694.dkr.ecr.eu-west-2.amazonaws.com/dockerdemo-servicea:latest
 
 sudo aws ecs register-task-definition --cli-input-json file://./TaskDefinition.json
-sudo aws ecs update-service --cluster dockerdemo --service dockerdemo-ECSService-AWONZFT9XQB8 --task-definition dockerdemo-servicea
+sudo aws ecs update-service --cluster dockerdemo --service DockerDemo-ECSService-DS0IEZLKTCTM --task-definition dockerdemo-servicea
