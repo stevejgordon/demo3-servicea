@@ -4,7 +4,7 @@
     {
       "name": "dockerdemo-servicea",
       "essential": true,
-      "image": "865288682694.dkr.ecr.eu-west-2.amazonaws.com/dockerdemo-servicea:latest",
+      "image": "865288682694.dkr.ecr.eu-west-2.amazonaws.com/dockerdemo-servicea:%GIT_SHA%",
       "entryPoint": [
         "dotnet",
         "DockerDotNetDevsDemo3.ServiceA.dll"
