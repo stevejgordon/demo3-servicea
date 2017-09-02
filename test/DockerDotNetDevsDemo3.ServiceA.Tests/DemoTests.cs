@@ -7,7 +7,8 @@ namespace DockerDotNetDevsDemo3.ServiceA.Tests
         [Fact]
         public void OneShouldBeEqualToOne()
         {
-            // Not testing anything useful here, just an example so the build can run tests
+            // Not testing anything useful here! 
+            // Just an example so the build can run tests
             Assert.Equal(1, 1);
         }
     }
