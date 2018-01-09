@@ -14,7 +14,7 @@ COPY ./src ./src
 
 RUN dotnet build -c Release
 RUN dotnet test test/DockerDotNetDevsDemo3.ServiceA.Tests/DockerDotNetDevsDemo3.ServiceA.Tests.csproj -c Release --no-build --verbosity minimal
-RUN dotnet publish src/DockerDotNetDevsDemo3.ServiceA/DockerDotNetDevsDemo3.ServiceA.csproj --output ../../out --c Release --verbosity quiet
+RUN dotnet publish src/DockerDotNetDevsDemo3.ServiceA/DockerDotNetDevsDemo3.ServiceA.csproj --output ../../out -c Release --verbosity quiet
 
 # Optimised final image
 FROM microsoft/aspnetcore:1.1
