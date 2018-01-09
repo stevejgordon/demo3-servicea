@@ -10,7 +10,7 @@ COPY test/DockerDotNetDevsDemo3.ServiceA.Tests/*.csproj ./test/DockerDotNetDevsD
 RUN dotnet restore --verbosity quiet
 
 COPY ./test ./test
-COPY .src ./src
+COPY ./src ./src
 
 RUN dotnet build -c Release --no-restore
 RUN dotnet test test/DockerDotNetDevsDemo3.ServiceA.Tests/DockerDotNetDevsDemo3.ServiceA.Tests.csproj -c Release --no-build --no-restore --verbosity minimal
