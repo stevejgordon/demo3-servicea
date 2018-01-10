@@ -55,7 +55,7 @@
             "Properties": {
                 "Cluster": "arn:aws:ecs:eu-west-2:865288682694:cluster/dockerdemo",
                 "DesiredCount": "1",
-                "TaskDefinition": "arn:aws:ecs:eu-west-2:865288682694:task-definition/dockerdemo-servicea:61",
+                "TaskDefinition": "arn:aws:ecs:eu-west-2:865288682694:task-definition/dockerdemo-servicea:62",
                 "LoadBalancers": [{
                     "TargetGroupArn": {
                         "Ref": "TargetGroup"
