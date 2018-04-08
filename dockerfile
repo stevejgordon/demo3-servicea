@@ -1,5 +1,5 @@
 # Build image
-FROM microsoft/aspnetcore-build:1.1 as publish
+FROM microsoft/aspnetcore-build:2.0.6-2.1.101 as publish
 
 WORKDIR /publish
 
@@ -17,7 +17,7 @@ RUN dotnet test test/DockerDotNetDevsDemo3.ServiceA.Tests/DockerDotNetDevsDemo3.
 RUN dotnet publish src/DockerDotNetDevsDemo3.ServiceA/DockerDotNetDevsDemo3.ServiceA.csproj --output ../../out -c Release --verbosity quiet
 
 # Optimised final image
-FROM microsoft/aspnetcore:1.1
+FROM microsoft/aspnetcore:2.0.6
 
 EXPOSE 80
 

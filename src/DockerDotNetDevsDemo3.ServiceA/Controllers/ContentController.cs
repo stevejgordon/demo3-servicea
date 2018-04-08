@@ -2,13 +2,12 @@
 
 namespace DockerDotNetDevsDemo3.ServiceA.Controllers
 {
-    [Route("api/[controller]")]
     public class ContentController : Controller
     {
         [HttpGet, Route("title")]
         public string GetTitle()
         {
-            return "Hello from Madgex!!";
+            return "Hello World!";
         }     
     }
 }
