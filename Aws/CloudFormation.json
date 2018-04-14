@@ -21,7 +21,7 @@
             "Properties": {
                 "Name": "servicea",
                 "HealthCheckIntervalSeconds": 120,
-                "HealthCheckPath": "/api/content/title",
+                "HealthCheckPath": "/title",
                 "Port": 80,
                 "Protocol": "HTTP",
                 "VpcId": "vpc-5722ae3e"
