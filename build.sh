@@ -18,4 +18,4 @@ docker rmi 865288682694.dkr.ecr.eu-west-2.amazonaws.com/dockerdemo-servicea:${GI
 sed -e "s/%GIT_SHA%/${GIT_COMMIT}/g" ./TaskDefinition.json > ./TaskDefinition-${GIT_COMMIT}.json
 sudo aws ecs register-task-definition --cli-input-json file://./TaskDefinition-${GIT_COMMIT}.json
 
-sudo aws ecs update-service --cluster dockerdemo --service DockerDemo-ECSService-1NNHD4Y1S7XYS --task-definition dockerdemo-servicea
+sudo aws ecs update-service --cluster dockerdemo --service DockerDemo-ECSService-1G3LHCN84F9IX --task-definition dockerdemo-servicea
