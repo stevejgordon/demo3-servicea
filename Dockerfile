@@ -1,5 +1,5 @@
 # Build image
-FROM microsoft/aspnetcore-build:2.0.6-2.1.101 as publish
+FROM microsoft/dotnet:2.1-sdk as build
 
 WORKDIR /publish
 
@@ -17,7 +17,7 @@ RUN dotnet test test/DockerDotNetDevsDemo3.ServiceA.Tests/DockerDotNetDevsDemo3.
 RUN dotnet publish src/DockerDotNetDevsDemo3.ServiceA/DockerDotNetDevsDemo3.ServiceA.csproj --output ../../out -c Release --verbosity quiet
 
 # Optimised final image
-FROM microsoft/aspnetcore:2.0.6
+FROM microsoft/dotnet:2.1-aspnetcore-runtime-alpine
 
 EXPOSE 80
 
@@ -25,4 +25,4 @@ ENTRYPOINT ["dotnet", "DockerDotNetDevsDemo3.ServiceA.dll"]
 
 WORKDIR /app
 
-COPY --from=publish /publish/out .
+COPY --from=build /publish/out .
