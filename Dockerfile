@@ -1,16 +1,16 @@
 # Build image
-FROM microsoft/dotnet:2.1-sdk as build
+FROM microsoft/dotnet:2.1-sdk as publish
 
 WORKDIR /publish
 
-COPY ./DockerDotNetDevsDemo3.sln ./
+COPY DockerDotNetDevsDemo3.sln .
 COPY src/DockerDotNetDevsDemo3.ServiceA/*.csproj ./src/DockerDotNetDevsDemo3.ServiceA/
 COPY test/DockerDotNetDevsDemo3.ServiceA.Tests/*.csproj ./test/DockerDotNetDevsDemo3.ServiceA.Tests/
 
 RUN dotnet restore --verbosity quiet
 
-COPY ./test ./test
-COPY ./src ./src
+COPY test test
+COPY src src
 
 RUN dotnet build -c Release
 RUN dotnet test test/DockerDotNetDevsDemo3.ServiceA.Tests/DockerDotNetDevsDemo3.ServiceA.Tests.csproj -c Release --no-build --verbosity minimal
@@ -25,4 +25,4 @@ ENTRYPOINT ["dotnet", "DockerDotNetDevsDemo3.ServiceA.dll"]
 
 WORKDIR /app
 
-COPY --from=build /publish/out .
+COPY --from=publish /publish/out .
